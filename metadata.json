@@ -1,0 +1,6 @@
+{
+  "name": "Makan Sehat Bergizi",
+  "description": "Game arcade edukasi Makan Sehat Bergizi — tangkap makanan bergizi sesuai target level, pelajari kandungan gizinya, hindari benda jebakan, dan taklukkan 5 level!",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

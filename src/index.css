@@ -1,0 +1,215 @@
+@import "tailwindcss";
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    overscroll-behavior: none;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    font-family: 'Nunito', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  }
+}
+
+.font-display {
+  font-family: 'Fredoka', 'Nunito', ui-rounded, system-ui, sans-serif;
+}
+
+/* Soft Japanese candy-shop gingham & polka dot stage backdrop */
+.kawaii-backdrop {
+  background-color: #FFF4F8;
+  background-image:
+    radial-gradient(rgba(244, 114, 182, 0.16) 2.2px, transparent 2.2px),
+    radial-gradient(rgba(251, 191, 36, 0.18) 2.2px, transparent 2.2px),
+    linear-gradient(155deg, #FFF7DC 0%, #FFE4F1 52%, #DCF4FF 100%);
+  background-size: 28px 28px, 28px 28px, 100% 100%;
+  background-position: 0 0, 14px 14px, 0 0;
+}
+
+/* Tactile glossy toy-like candy button */
+.kawaii-btn {
+  position: relative;
+  border-style: solid;
+  border-width: 3px;
+  box-shadow:
+    inset 0 3px 0 rgba(255, 255, 255, 0.55),
+    0 5px 0 var(--btn-lip, rgba(15, 23, 42, 0.25));
+  transition: transform 130ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 130ms ease, filter 130ms ease;
+}
+
+.kawaii-btn:hover {
+  filter: brightness(1.03);
+  transform: translateY(-1px);
+}
+
+.kawaii-btn:active {
+  transform: translateY(4px);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.4),
+    0 1px 0 var(--btn-lip, rgba(15, 23, 42, 0.25));
+}
+
+/* Tactile small icon button (social links, HUD square buttons) */
+.kawaii-icon-btn {
+  border-style: solid;
+  border-width: 2.5px;
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.65),
+    0 3px 0 var(--btn-lip, rgba(15, 23, 42, 0.18));
+  transition: transform 130ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 130ms ease, background-color 130ms ease;
+}
+
+.kawaii-icon-btn:hover {
+  transform: translateY(-1px) scale(1.04);
+}
+
+.kawaii-icon-btn:active {
+  transform: translateY(2px) scale(0.96);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 1px 0 var(--btn-lip, rgba(15, 23, 42, 0.18));
+}
+
+/* Puffy toy sticker window */
+.kawaii-window {
+  background-color: #FFFDF9;
+  border-style: solid;
+  border-width: 4px;
+  box-shadow:
+    inset 0 4px 0 rgba(255, 255, 255, 0.9),
+    0 10px 0 var(--win-lip, rgba(217, 119, 6, 0.24)),
+    0 18px 34px rgba(15, 23, 42, 0.22);
+}
+
+/* Sticker outline text */
+.kawaii-sticker-text {
+  text-shadow:
+    0 2px 0 rgba(255, 255, 255, 0.95),
+    0 -1px 0 rgba(255, 255, 255, 0.95),
+    2px 0 0 rgba(255, 255, 255, 0.95),
+    -2px 0 0 rgba(255, 255, 255, 0.95),
+    0 4px 6px rgba(190, 24, 93, 0.18);
+}
+
+/* Toy candy range slider */
+.kawaii-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 12px;
+  border-radius: 999px;
+  border: 2px solid #CBD5E1;
+  outline: none;
+}
+
+.kawaii-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background: #FFFDF9;
+  border: 3.5px solid currentColor;
+  box-shadow: 0 3px 0 rgba(15, 23, 42, 0.18);
+  cursor: pointer;
+}
+
+.kawaii-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background: #FFFDF9;
+  border: 3.5px solid currentColor;
+  box-shadow: 0 3px 0 rgba(15, 23, 42, 0.18);
+  cursor: pointer;
+}
+
+/* Responsive stage: full viewport on desktop, strictly fixed 9:16 aspect ratio on mobile devices */
+.game-stage-responsive {
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px), (pointer: coarse) and (orientation: portrait) {
+  .game-stage-responsive {
+    width: min(100vw, calc(100dvh * 9 / 16));
+    height: min(100dvh, calc(100vw * 16 / 9));
+    max-width: calc(100dvh * 9 / 16);
+    max-height: calc(100vw * 16 / 9);
+    aspect-ratio: 9 / 16;
+  }
+}
+
+main:fullscreen,
+main:-webkit-full-screen {
+  width: 100vw;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-7px) scale(1.02);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.86) translateY(10px);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.03) translateY(-1px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes bannerBounce {
+  0% {
+    opacity: 0;
+    transform: scale(0.72) rotate(-2deg);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.07) rotate(1deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 3s ease-in-out infinite;
+}
+
+.animate-pop-in {
+  animation: popIn 240ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-banner-bounce {
+  animation: bannerBounce 360ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-slow,
+  .animate-pop-in,
+  .animate-banner-bounce {
+    animation: none !important;
+  }
+}
